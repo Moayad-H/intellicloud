@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intellicloud/routes/app_routes.dart';
+import 'package:intellicloud/features/homeScreen/widgets/sidebar.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -24,49 +26,7 @@ class DashboardPage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: Drawer(
-        // Sidebar Navigation Drawer
-        child: Column(
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              child: Center(
-                child: Text(
-                  'Dashboard Menu',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                // Navigate to Home
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.bar_chart),
-              title: Text('Analytics'),
-              onTap: () {
-                // Navigate to Analytics
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: () {
-                // Navigate to Settings
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: SidebarNavigation(activeRoute: AppRoutes.dashboard),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
