@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:intellicloud/features/homeScreen/view/starter_dashboard.dart';
+import 'package:intellicloud/features/settingsScreen/view/starter_dashboard.dart';
 
 class AppRoutes {
   static const String dashboard = '/';
@@ -12,8 +13,12 @@ class AppRoutes {
     initialLocation: dashboard,
     routes: [
       GoRoute(
-        path: '/',
+        path: dashboard,
         builder: (context, state) => DashboardPage(),
+      ),
+      GoRoute(
+        path: settings,
+        builder: (context, state) => SettingsPage(),
       ),
     ],
   );
