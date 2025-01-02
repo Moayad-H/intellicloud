@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intellicloud/routes/app_routes.dart';
 import 'package:intellicloud/theme.dart';
-import 'package:intellicloud/features/homeScreen/view/starter_dashboard.dart';
+import 'features/homeScreen/controller/dashboard_cubit.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(create: (_) => DashboardCubit()), // Provide the DashboardCubit
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
