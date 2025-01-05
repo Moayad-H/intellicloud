@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intellicloud/features/homeScreen/controller/dashboard_cubit.dart';
+import 'package:intellicloud/features/homeScreen/view/charts/energy_consumption.dart';
 import 'package:intellicloud/routes/app_routes.dart';
 import 'package:intellicloud/features/homeScreen/widgets/sidebar.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<DashboardCubit>().loadMetrics();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // Scaffold to structure the page
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: Text(
+          'IntelliCloud',
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
@@ -27,57 +45,61 @@ class DashboardPage extends StatelessWidget {
         ],
       ),
       drawer: SidebarNavigation(activeRoute: AppRoutes.dashboard),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Top Row for Key Metrics
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: BlocBuilder<DashboardCubit, DashboardState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (state.errorMessage != null) {
+            return Center(child: Text(state.errorMessage!));
+          }
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildMetricCard(
-                  title: 'Total Energy',
-                  value: '150 kWh',
-                  icon: Icons.bolt,
-                  context: context,
+                // Top Row for Key Metrics
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildMetricCard(
+                      title: 'Total Energy',
+                      value: '150 kWh',
+                      icon: Icons.bolt,
+                      context: context,
+                    ),
+                    _buildMetricCard(
+                      title: 'Cost Savings',
+                      value: '\$1,200',
+                      icon: Icons.monetization_on,
+                      context: context,
+                    ),
+                    _buildMetricCard(
+                      title: 'Completed Tasks',
+                      value: '452',
+                      icon: Icons.task_alt,
+                      context: context,
+                    ),
+                  ],
                 ),
-                _buildMetricCard(
-                  title: 'Cost Savings',
-                  value: '\$1,200',
-                  icon: Icons.monetization_on,
-                  context: context,
-                ),
-                _buildMetricCard(
-                  title: 'Completed Tasks',
-                  value: '452',
-                  icon: Icons.task_alt,
-                  context: context,
+                SizedBox(height: 20),
+
+                // Placeholder for Charts
+                Container(
+                  width: 500,
+                  height: 500,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[850], // Frozen grey container
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                      child: EnergyConsumptionChart(metrics: state.metrics)),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-
-            // Placeholder for Charts
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[850], // Frozen grey container
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: Text(
-                    'Chart or Content Goes Here',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Theme.of(context).textTheme.bodyLarge?.color,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

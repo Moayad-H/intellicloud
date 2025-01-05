@@ -99,15 +99,35 @@ ThemeData getAppTheme() {
     fontFamily: 'Roboto', // You can customize the font
     textTheme: TextTheme(
       headlineLarge: TextStyle(
-          color: AppColors.brightWhite,
-          fontSize: 32,
-          fontWeight: FontWeight.bold),
+        color: AppColors.brightWhite,
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Roboto',
+        letterSpacing: 0.5,
+        height: 1.5,
+      ),
       headlineSmall: TextStyle(
-          color: AppColors.brightWhite,
-          fontSize: 20,
-          fontWeight: FontWeight.bold),
-      bodyLarge: TextStyle(color: AppColors.textLightGray, fontSize: 16),
-      bodyMedium: TextStyle(color: AppColors.textLightGray, fontSize: 14),
+        color: AppColors.brightWhite,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Roboto',
+        letterSpacing: 0.5,
+        height: 1.5,
+      ),
+      bodyLarge: TextStyle(
+        color: AppColors.textLightGray,
+        fontSize: 16,
+        fontFamily: 'Roboto',
+        letterSpacing: 0.5,
+        height: 1.5,
+      ),
+      bodyMedium: TextStyle(
+        color: AppColors.textLightGray,
+        fontSize: 14,
+        fontFamily: 'Roboto',
+        letterSpacing: 0.5,
+        height: 1.5,
+      ),
     ),
 
     // Card Theme

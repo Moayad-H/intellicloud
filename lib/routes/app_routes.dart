@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:intellicloud/features/homeScreen/view/starter_dashboard.dart';
 import 'package:intellicloud/features/settingsScreen/view/starter_dashboard.dart';
+import 'package:intellicloud/utils/custom_transition.dart';
 
 class AppRoutes {
   static const String dashboard = '/';
@@ -14,11 +15,14 @@ class AppRoutes {
     routes: [
       GoRoute(
         path: dashboard,
-        builder: (context, state) => DashboardPage(),
+        pageBuilder: (context, state) => buildPageWithSlideTransition(
+          child: const DashboardPage(),
+        ),
       ),
       GoRoute(
         path: settings,
-        builder: (context, state) => SettingsPage(),
+        pageBuilder: (context, state) =>
+            buildPageWithSlideTransition(child: SettingsPage()),
       ),
     ],
   );
