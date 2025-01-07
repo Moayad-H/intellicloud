@@ -1,8 +1,9 @@
+import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intellicloud/assets/colors.dart';
-import 'package:intellicloud/features/homeScreen/controller/dashboard_cubit.dart';
+import 'package:intellicloud/app_colors/colors.dart';
+import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
 import 'package:intellicloud/routes/app_routes.dart';
 
 class SidebarNavigation extends StatelessWidget {
@@ -32,7 +33,7 @@ class SidebarNavigation extends StatelessWidget {
             _buildMenuItem(
               context,
               title: 'Dashboard',
-              route: AppRoutes.dashboard,
+              route: AppRoutes.startScreen,
               index: 0,
               isActive: state.activeTabIndex == 0,
             ),
@@ -75,8 +76,8 @@ class SidebarNavigation extends StatelessWidget {
         title,
         style: Theme.of(context).textTheme.labelLarge?.copyWith(
             color: isActive == true
-                ? AppColors.darkTealBlue
-                : AppColors.brightWhite),
+                ? AppColors.lightGray
+                : AppColors.warningAmber),
       ),
       onTap: () {
         if (route != activeRoute) {

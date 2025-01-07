@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Primary Colors
-  static const Color darkTealBlue = Color.fromARGB(255, 7, 132, 139);
+  // Common Colors
+  static const Color darkTealBlue = Color(0xFF07848B);
   static const Color charcoalGray = Color.fromARGB(255, 33, 33, 33);
 
   // Accent Colors
