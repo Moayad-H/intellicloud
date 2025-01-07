@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intellicloud/assets/colors.dart';
+import 'package:intellicloud/app_colors/colors.dart';
 
 ThemeData getAppTheme() {
   return ThemeData(

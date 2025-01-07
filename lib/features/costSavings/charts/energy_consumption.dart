@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intellicloud/assets/colors.dart';
+import 'package:intellicloud/app_colors/colors.dart';
 import 'package:intellicloud/data/models/mock_metrics.dart';
 
 class EnergyConsumptionChart extends StatelessWidget {
@@ -33,7 +33,7 @@ class EnergyConsumptionChart extends StatelessWidget {
                       entry.key.toDouble(), entry.value.energyConsumption))
                   .toList(),
               isCurved: true,
-              color: AppColors.mintGreen,
+              color: AppColors.deepBlue,
               barWidth: 2,
               dotData: FlDotData(show: true),
             ),
