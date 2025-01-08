@@ -30,31 +30,34 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Sidebar2(),
-            Expanded(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CustomAppbar(),
-                    ],
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Sidebar2(),
+          Expanded(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(child: CustomAppbar()),
+                  ],
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: widget.child,
+                    ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: widget.child,
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
 
-            // Top Row for Key Metrics
-          ],
-        ),
+          // Top Row for Key Metrics
+        ],
       ),
     );
   }

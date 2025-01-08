@@ -22,7 +22,7 @@ ThemeData getAppTheme() {
     ),
 
     // Background and Surface Colors
-    scaffoldBackgroundColor: AppColors.charcoalGray,
+    scaffoldBackgroundColor: Color.fromARGB(255, 235, 233, 233),
     canvasColor: AppColors.charcoalGray,
     cardColor: AppColors.deepBlue,
     dialogBackgroundColor: AppColors.charcoalGray,
@@ -59,7 +59,7 @@ ThemeData getAppTheme() {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: AppColors.softCyan,
+        foregroundColor: AppColors.lightGray,
         textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       ),
     ),
@@ -74,57 +74,57 @@ ThemeData getAppTheme() {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.steelBlue,
-      hintStyle: TextStyle(color: AppColors.textLightGray),
+      hintStyle: TextStyle(color: AppColors.charcoalGray),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: AppColors.softCyan),
+        borderSide: BorderSide(color: AppColors.charcoalGray),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: AppColors.softCyan),
+        borderSide: BorderSide(color: AppColors.charcoalGray),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: AppColors.mintGreen),
+        borderSide: BorderSide(color: AppColors.charcoalGray),
       ),
     ),
 
     // Icon Theme
     iconTheme: IconThemeData(
-      color: AppColors.brightWhite,
+      color: AppColors.lightGray,
       size: 24,
     ),
 
     // Typography and Text Theme
-    fontFamily: 'Roboto', // You can customize the font
+    fontFamily: 'Jost', // You can customize the font
     textTheme: TextTheme(
       headlineLarge: TextStyle(
-        color: AppColors.brightWhite,
+        color: AppColors.lightGray,
         fontSize: 32,
         fontWeight: FontWeight.bold,
-        fontFamily: 'Roboto',
+        fontFamily: 'Jost',
         letterSpacing: 0.5,
         height: 1.5,
       ),
       headlineSmall: TextStyle(
-        color: AppColors.brightWhite,
+        color: AppColors.lightGray,
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        fontFamily: 'Roboto',
+        fontFamily: 'Jost',
         letterSpacing: 0.5,
         height: 1.5,
       ),
       bodyLarge: TextStyle(
-        color: AppColors.textLightGray,
+        color: AppColors.lightGray,
         fontSize: 16,
-        fontFamily: 'Roboto',
+        fontFamily: 'Jost',
         letterSpacing: 0.5,
         height: 1.5,
       ),
       bodyMedium: TextStyle(
-        color: AppColors.textLightGray,
+        color: AppColors.lightGray,
         fontSize: 14,
-        fontFamily: 'Roboto',
+        fontFamily: 'Jost',
         letterSpacing: 0.5,
         height: 1.5,
       ),

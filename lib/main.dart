@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/controllers/page_controller/page_cubit.dart';
 import 'package:intellicloud/routes/app_routes.dart';
 import 'package:intellicloud/theme.dart';
@@ -21,7 +23,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: AppRoutes().router,
       title: 'Flutter Demo',
-      darkTheme: getAppTheme(),
+      // darkTheme: getAppTheme(),
+      darkTheme: getAppTheme().copyWith(
+        appBarTheme: AppBarTheme(backgroundColor: bgColor, elevation: 0),
+        scaffoldBackgroundColor: bgColor,
+        primaryColor: greenColor,
+        dialogBackgroundColor: secondaryColor,
+        buttonTheme: ButtonThemeData(buttonColor: greenColor),
+        textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme)
+            .apply(bodyColor: Colors.white),
+        canvasColor: secondaryColor,
+      ),
       // theme: getLightTheme(),
       themeMode: ThemeMode.dark,
     );

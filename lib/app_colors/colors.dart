@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Common Colors
-  static const Color darkTealBlue = Color(0xFF07848B);
+  static const Color darkTealBlue = Color(0xFF212B38);
   static const Color charcoalGray = Color.fromARGB(255, 33, 33, 33);
 
   // Accent Colors
@@ -11,7 +11,7 @@ class AppColors {
   static const Color lightGray = Color(0xFFF5F5F5);
 
   // Text Colors
-  static const Color brightWhite = Color(0xFFFFFFFF);
+  static const Color brightWhite = Color.fromARGB(255, 235, 233, 233);
   static const Color textLightGray = Color.fromARGB(255, 211, 211, 211);
 
   // Error and Warning
