@@ -8,12 +8,26 @@ class CustomAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      decoration: BoxDecoration(
-        color: AppColors.charcoalGray.withAlpha(200),
-      ),
+      //decoration: BoxDecoration(color: AppColors.brightWhite),
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-        TextButton(onPressed: () {}, child: Text('Documentation')),
-        TextButton(onPressed: () {}, child: Text('API')),
+        TextButton(
+            onPressed: () {},
+            child: Text(
+              'Documentation',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(color: AppColors.lightGray),
+            )),
+        TextButton(
+            onPressed: () {},
+            child: Text(
+              'API',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(color: AppColors.lightGray),
+            )),
         IconButton(
           icon: Icon(Icons.dark_mode),
           onPressed: () {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intellicloud/app_assets/app_assets.dart';
+import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
 import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
 import 'package:intellicloud/routes/app_routes.dart';
@@ -40,7 +41,9 @@ class _Sidebar2State extends State<Sidebar2> {
         icon: Icon(Icons.home),
         badgeContent: Text(
           '3',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
       SideMenuItem(
@@ -55,18 +58,20 @@ class _Sidebar2State extends State<Sidebar2> {
     return SideMenu(
       displayModeToggleDuration: Duration(milliseconds: 350),
       style: SideMenuStyle(
+        openSideMenuWidth: 300,
         displayMode: SideMenuDisplayMode.auto,
-        hoverColor: AppColors.deepBlue,
-        selectedColor: AppColors.steelBlue,
+        hoverColor: AppColors.mintGreen.withAlpha(30),
+        selectedColor: AppColors.mintGreen.withAlpha(80),
         selectedTitleTextStyle: TextStyle(color: Colors.white),
         selectedIconColor: Colors.white,
         unselectedIconColor: Colors.white70,
         unselectedTitleTextStyle: TextStyle(color: Colors.white70),
-        showHamburger: true,
+        showHamburger: false,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: BorderRadius.all(Radius.circular(0)),
         ),
-        backgroundColor: AppColors.deepBlue.withAlpha(200),
+        backgroundColor: secondaryColor,
+        // backgroundColor: AppColors.deepBlue.withAlpha(180),
         // openSideMenuWidth: 200
       ),
       // Page controller to manage a PageView
@@ -88,7 +93,10 @@ class _Sidebar2State extends State<Sidebar2> {
                     ),
                     Text(
                       'IntelliCloud',
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style:
+                          Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                color: AppColors.mintGreen,
+                              ),
                     ),
                     SizedBox(
                       height: 10,
