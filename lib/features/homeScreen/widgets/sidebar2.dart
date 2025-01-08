@@ -47,6 +47,22 @@ class _Sidebar2State extends State<Sidebar2> {
         ),
       ),
       SideMenuItem(
+        title: 'Optimization',
+        onTap: (index, _) {
+          dashboardCubit.updateActiveTab(index);
+          context.go(AppRoutes.energyConsumption);
+        },
+        icon: Icon(Icons.build_sharp),
+      ),
+      SideMenuItem(
+        title: 'Savings',
+        onTap: (index, _) {
+          dashboardCubit.updateActiveTab(index);
+          context.go(AppRoutes.energyConsumption);
+        },
+        icon: Icon(Icons.monetization_on),
+      ),
+      SideMenuItem(
         title: 'Exit',
         onTap: (index, _) {
           dashboardCubit.updateActiveTab(index);
