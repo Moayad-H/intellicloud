@@ -8,6 +8,7 @@ class AppColors {
   // Accent Colors
   static const Color softCyan = Color(0xFFA5E3E6);
   static const Color mintGreen = Color(0xFF5BC3B8);
+  static const Color darkTeal = Color.fromARGB(80, 91, 195, 184);
   static const Color lightGray = Color(0xFFF5F5F5);
 
   // Text Colors
