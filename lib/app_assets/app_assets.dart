@@ -10,4 +10,7 @@ class AppAssets {
   static const String costChart = '$imagesPath/cost_chart.png';
   static const String costChart2 = '$imagesPath/cost_chart2.png';
   static const String optimizeHome = '$animationPath/optimizePeople.json';
+  static const String appLoader = '$animationPath/appLoader.json';
+  static const String successLoader = '$animationPath/successLoader.json';
+  static const String verifiedLoader = '$animationPath/verified.json';
 }

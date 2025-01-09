@@ -1,16 +1,11 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:data_table_2/data_table_2.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intellicloud/app_assets/app_assets.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
-import 'package:intellicloud/utils/responsive.dart';
+import 'package:intellicloud/features/start_screen/components/connect_cluster.dart';
 import 'package:lottie/lottie.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -63,7 +58,9 @@ class StartScreen extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(4)),
               ),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  connectClusterDialog(context);
+                },
                 child: Text(
                   'Connect Cluster',
                   style: Theme.of(context)
@@ -497,7 +494,9 @@ class StartScreen extends StatelessWidget {
                                       BorderRadius.all(Radius.circular(4)),
                                 ),
                                 child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      connectClusterDialog(context);
+                                    },
                                     child: Text(
                                       'Connect Cluster',
                                       style: Theme.of(context)
@@ -520,6 +519,13 @@ class StartScreen extends StatelessWidget {
       ],
     );
   }
+}
+
+void connectClusterDialog(BuildContext context) {
+  showDialog(
+      // barrierDismissible: true,
+      context: context,
+      builder: (context) => ClusterConnectionScreen());
 }
 
 class _ChartData {
