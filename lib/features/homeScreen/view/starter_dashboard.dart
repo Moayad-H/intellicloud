@@ -11,15 +11,15 @@ import 'package:intellicloud/features/start_screen/start_screen.dart';
 import 'package:intellicloud/routes/app_routes.dart';
 import 'package:intellicloud/features/homeScreen/widgets/sidebar.dart';
 
-class DashboardPage extends StatefulWidget {
-  DashboardPage({super.key, required this.child});
+class MainContent extends StatefulWidget {
+  MainContent({super.key, required this.child});
   Widget child;
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  State<MainContent> createState() => _MainContentState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _MainContentState extends State<MainContent> {
   @override
   void initState() {
     // TODO: implement initState
@@ -47,7 +47,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: SingleChildScrollView(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(16.0),
                       child: widget.child,
                     ),
                   ),

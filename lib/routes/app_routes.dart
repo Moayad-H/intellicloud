@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intellicloud/controllers/page_controller/page_state.dart';
+import 'package:intellicloud/features/cluster/dashboard/cluster_dashboard.dart';
 import 'package:intellicloud/features/costSavings/view/energy_consumption_screen.dart';
 import 'package:intellicloud/features/homeScreen/view/starter_dashboard.dart';
 import 'package:intellicloud/features/settingsScreen/view/settings_screen.dart';
@@ -9,6 +10,7 @@ import 'package:intellicloud/utils/custom_transition.dart';
 
 class AppRoutes {
   static const String startScreen = '/';
+  static const String clusterDashboard = '/cluster/dashboard';
   static const String energyConsumption = '/energy_consumption';
   static const String analytics = '/analytics';
   static const String reports = '/reports';
@@ -21,7 +23,7 @@ class AppRoutes {
     routes: [
       ShellRoute(
           navigatorKey: _shellNavigatorKey,
-          builder: (context, state, child) => DashboardPage(
+          builder: (context, state, child) => MainContent(
                 child: child,
               ),
           routes: [
@@ -30,6 +32,12 @@ class AppRoutes {
                 parentNavigatorKey: _shellNavigatorKey,
                 pageBuilder: (context, state) => buildPageWithSlideTransition(
                       child: StartScreen(),
+                    )),
+            GoRoute(
+                path: clusterDashboard,
+                parentNavigatorKey: _shellNavigatorKey,
+                pageBuilder: (context, state) => buildPageWithSlideTransition(
+                      child: ClusterDashboard(),
                     )),
             GoRoute(
                 path: energyConsumption,
