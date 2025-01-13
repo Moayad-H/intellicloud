@@ -13,4 +13,5 @@ class AppAssets {
   static const String appLoader = '$animationPath/appLoader.json';
   static const String successLoader = '$animationPath/successLoader.json';
   static const String verifiedLoader = '$animationPath/verified.json';
+  static const String eksIcon = '$iconsPath/eks_icon.svg';
 }
