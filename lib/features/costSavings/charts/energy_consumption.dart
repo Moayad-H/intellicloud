@@ -6,8 +6,7 @@ import 'package:intellicloud/data/models/mock_metrics.dart';
 class EnergyConsumptionChart extends StatelessWidget {
   final List<Metric> metrics;
 
-  const EnergyConsumptionChart({Key? key, required this.metrics})
-      : super(key: key);
+  const EnergyConsumptionChart({super.key, required this.metrics});
 
   @override
   Widget build(BuildContext context) {

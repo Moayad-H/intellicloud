@@ -56,7 +56,7 @@ class InfoCard extends StatelessWidget {
                   ? primaryColor
                   : AppColors.warningAmber,
             ));
-          }).toList(),
+          }),
         ],
       ),
     );

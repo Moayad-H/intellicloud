@@ -50,7 +50,7 @@ class ClusterUtilizationDougnut extends StatelessWidget {
             child: Column(
               children: [
                 Center(
-                  child: Container(
+                  child: SizedBox(
                     height: 220,
                     width: 200,
                     child: SfCircularChart(

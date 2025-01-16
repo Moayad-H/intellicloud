@@ -1,15 +1,8 @@
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intellicloud/app_assets/app_assets.dart';
-import 'package:intellicloud/app_colors/colors.dart';
 import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
-import 'package:intellicloud/features/costSavings/charts/energy_consumption.dart';
 import 'package:intellicloud/features/homeScreen/widgets/appbar.dart';
 import 'package:intellicloud/features/homeScreen/widgets/sidebar2.dart';
-import 'package:intellicloud/features/start_screen/start_screen.dart';
-import 'package:intellicloud/routes/app_routes.dart';
-import 'package:intellicloud/features/homeScreen/widgets/sidebar.dart';
 
 class MainContent extends StatefulWidget {
   MainContent({super.key, required this.child});

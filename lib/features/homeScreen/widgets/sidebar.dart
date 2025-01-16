@@ -1,4 +1,3 @@
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,8 +8,7 @@ import 'package:intellicloud/routes/app_routes.dart';
 class SidebarNavigation extends StatelessWidget {
   final String activeRoute;
 
-  const SidebarNavigation({Key? key, required this.activeRoute})
-      : super(key: key);
+  const SidebarNavigation({super.key, required this.activeRoute});
 
   @override
   Widget build(BuildContext context) {

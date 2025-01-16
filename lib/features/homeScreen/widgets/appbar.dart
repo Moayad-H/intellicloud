@@ -6,7 +6,7 @@ class CustomAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       //decoration: BoxDecoration(color: AppColors.brightWhite),
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
