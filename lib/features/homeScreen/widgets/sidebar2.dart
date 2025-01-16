@@ -105,14 +105,18 @@ class _Sidebar2State extends State<Sidebar2> {
     return SideMenu(
       displayModeToggleDuration: Duration(milliseconds: 350),
       style: SideMenuStyle(
-        openSideMenuWidth: 300,
+        openSideMenuWidth: 250,
         displayMode: SideMenuDisplayMode.auto,
         hoverColor: AppColors.mintGreen.withAlpha(30),
         selectedColor: AppColors.mintGreen.withAlpha(80),
-        selectedTitleTextStyle: TextStyle(color: Colors.white),
+        selectedTitleTextStyle: Theme.of(context)
+            .textTheme
+            .titleMedium
+            ?.copyWith(
+                color: AppColors.brightWhite, fontWeight: FontWeight.w900),
         selectedIconColor: AppColors.mintGreen,
         unselectedIconColor: AppColors.lightGray,
-        unselectedTitleTextStyle: TextStyle(color: Colors.white70),
+        unselectedTitleTextStyle: Theme.of(context).textTheme.titleSmall,
         showHamburger: false,
         arrowCollapse: AppColors.mintGreen,
         arrowOpen: AppColors.mintGreen.withAlpha(140),
@@ -146,7 +150,7 @@ class _Sidebar2State extends State<Sidebar2> {
                     Text(
                       'IntelliCloud',
                       style:
-                          Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: AppColors.mintGreen,
                               ),
                     ),
