@@ -36,7 +36,7 @@ class ClusterUtilizationDougnut extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .titleMedium
-                ?.copyWith(color: AppColors.lightGray),
+                ?.copyWith(letterSpacing: 2, color: AppColors.lightGray),
           ),
           SizedBox(
             height: 10,

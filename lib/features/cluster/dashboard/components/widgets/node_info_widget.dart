@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
+import 'package:intellicloud/features/cluster/dashboard/components/widgets/info_vertical_divider.dart';
 
 class InfoCard extends StatelessWidget {
   final String title;
@@ -48,43 +49,13 @@ class InfoCard extends StatelessWidget {
           ),
           ...subValues.map((subValue) {
             return Expanded(
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: 40,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      width: 20,
-                      color: subValue['color'] == 'primary'
-                          ? primaryColor
-                          : AppColors.warningAmber,
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AutoSizeText(
-                        subValue['title']!,
-                        maxLines: 1,
-                        minFontSize: 10,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall
-                            ?.copyWith(color: AppColors.lightGray),
-                      ),
-                      AutoSizeText(
-                        subValue['value']!,
-                        maxLines: 1,
-                        minFontSize: 10,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.lightGray,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            );
+                child: InfoVerticalDivider(
+              title: subValue['title']!,
+              value: subValue['value']!,
+              color: subValue['color'] == 'primary'
+                  ? primaryColor
+                  : AppColors.warningAmber,
+            ));
           }).toList(),
         ],
       ),
