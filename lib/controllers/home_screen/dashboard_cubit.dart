@@ -4,7 +4,6 @@ import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intellicloud/data/models/mock_metrics.dart';
-import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'dashboard_state.dart';
@@ -18,7 +17,6 @@ class DashboardCubit extends Cubit<DashboardState> {
   // Update the active navigation tab
   Future<void> updateActiveTab(int index) async {
     activeTabIndex = index;
-    print('Active Tab after update: $activeTabIndex');
     emit(state.copyWith(activeTabIndex: index));
     controller.changePage(index);
     final prefs = await SharedPreferences.getInstance();

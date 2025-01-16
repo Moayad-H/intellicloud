@@ -1,25 +1,18 @@
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intellicloud/app_assets/app_assets.dart';
-import 'package:intellicloud/app_colors/colors.dart';
 import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
-import 'package:intellicloud/features/costSavings/charts/energy_consumption.dart';
 import 'package:intellicloud/features/homeScreen/widgets/appbar.dart';
 import 'package:intellicloud/features/homeScreen/widgets/sidebar2.dart';
-import 'package:intellicloud/features/start_screen/start_screen.dart';
-import 'package:intellicloud/routes/app_routes.dart';
-import 'package:intellicloud/features/homeScreen/widgets/sidebar.dart';
 
-class DashboardPage extends StatefulWidget {
-  DashboardPage({super.key, required this.child});
+class MainContent extends StatefulWidget {
+  MainContent({super.key, required this.child});
   Widget child;
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  State<MainContent> createState() => _MainContentState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _MainContentState extends State<MainContent> {
   @override
   void initState() {
     // TODO: implement initState
@@ -47,7 +40,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: SingleChildScrollView(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(16.0),
                       child: widget.child,
                     ),
                   ),

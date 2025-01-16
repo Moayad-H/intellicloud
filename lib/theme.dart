@@ -106,6 +106,14 @@ ThemeData getAppTheme() {
         letterSpacing: 0.5,
         height: 1.5,
       ),
+      headlineMedium: TextStyle(
+        color: AppColors.lightGray,
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Jost',
+        letterSpacing: 0.5,
+        height: 1.5,
+      ),
       headlineSmall: TextStyle(
         color: AppColors.lightGray,
         fontSize: 20,

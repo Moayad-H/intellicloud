@@ -1,6 +1,5 @@
 part of 'dashboard_cubit.dart';
 
-@immutable
 class DashboardState {
   final int activeTabIndex;
   final Map<String, dynamic> filters;

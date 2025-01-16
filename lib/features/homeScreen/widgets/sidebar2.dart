@@ -30,9 +30,9 @@ class _Sidebar2State extends State<Sidebar2> {
   Widget build(BuildContext context) {
     DashboardCubit dashboardCubit = DashboardCubit.get(context);
 
-    List<SideMenuItem> items = [
+    List items = [
       SideMenuItem(
-        title: 'Dashboard',
+        title: 'Cluster List',
         onTap: (index, _) {
           // sideMenu.changePage(index);
           dashboardCubit.updateActiveTab(index);
@@ -46,47 +46,87 @@ class _Sidebar2State extends State<Sidebar2> {
           ),
         ),
       ),
-      SideMenuItem(
-        title: 'Optimization',
-        onTap: (index, _) {
-          dashboardCubit.updateActiveTab(index);
-          context.go(AppRoutes.energyConsumption);
-        },
-        icon: Icon(Icons.build_sharp),
+      SideMenuExpansionItem(
+        title: ' Cluster',
+        icon: Icon(
+          Icons.cloud,
+          color: AppColors.brightWhite,
+        ),
+        children: [
+          SideMenuItem(
+            title: 'Dashboard',
+            onTap: (index, _) {
+              dashboardCubit.updateActiveTab(index);
+              context.go(AppRoutes.clusterDashboard);
+            },
+            icon: const Icon(Icons.speed),
+          ),
+          SideMenuItem(
+            title: 'Cost Monitoring',
+            onTap: (index, _) {
+              dashboardCubit.updateActiveTab(index);
+            },
+            icon: const Icon(Icons.bar_chart),
+          ),
+          SideMenuItem(
+            title: 'Available Savings',
+            onTap: (index, _) {
+              dashboardCubit.updateActiveTab(index);
+            },
+            icon: Icon(Icons.monetization_on_sharp),
+          )
+        ],
       ),
+      // SideMenuItem(
+      //   title: 'Optimization',
+      //   onTap: (index, _) {
+      //     dashboardCubit.updateActiveTab(index);
+      //     context.go(AppRoutes.energyConsumption);
+      //   },
+      //   icon: Icon(Icons.build_sharp),
+      // ),
+      // SideMenuItem(
+      //   title: 'Savings',
+      //   onTap: (index, _) {
+      //     dashboardCubit.updateActiveTab(index);
+      //     context.go(AppRoutes.energyConsumption);
+      //   },
+      //   icon: Icon(Icons.monetization_on_sharp),
+      // ),
       SideMenuItem(
-        title: 'Savings',
+        title: 'Settings',
         onTap: (index, _) {
           dashboardCubit.updateActiveTab(index);
           context.go(AppRoutes.energyConsumption);
         },
-        icon: Icon(Icons.monetization_on),
-      ),
-      SideMenuItem(
-        title: 'Exit',
-        onTap: (index, _) {
-          dashboardCubit.updateActiveTab(index);
-          context.go(AppRoutes.energyConsumption);
-        },
-        icon: Icon(Icons.exit_to_app),
+        icon: Icon(Icons.settings),
       ),
     ];
     return SideMenu(
       displayModeToggleDuration: Duration(milliseconds: 350),
       style: SideMenuStyle(
-        openSideMenuWidth: 300,
+        openSideMenuWidth: 250,
         displayMode: SideMenuDisplayMode.auto,
         hoverColor: AppColors.mintGreen.withAlpha(30),
         selectedColor: AppColors.mintGreen.withAlpha(80),
-        selectedTitleTextStyle: TextStyle(color: Colors.white),
-        selectedIconColor: Colors.white,
-        unselectedIconColor: Colors.white70,
-        unselectedTitleTextStyle: TextStyle(color: Colors.white70),
+        selectedTitleTextStyle: Theme.of(context)
+            .textTheme
+            .titleMedium
+            ?.copyWith(
+                color: AppColors.brightWhite, fontWeight: FontWeight.w900),
+        selectedIconColor: AppColors.mintGreen,
+        unselectedIconColor: AppColors.lightGray,
+        unselectedTitleTextStyle: Theme.of(context).textTheme.titleSmall,
         showHamburger: false,
+        arrowCollapse: AppColors.mintGreen,
+        arrowOpen: AppColors.mintGreen.withAlpha(140),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(0)),
         ),
+
         backgroundColor: secondaryColor,
+        selectedIconColorExpandable: AppColors.mintGreen,
+        unselectedIconColorExpandable: AppColors.lightGray,
         // backgroundColor: AppColors.deepBlue.withAlpha(180),
         // openSideMenuWidth: 200
       ),
@@ -110,7 +150,7 @@ class _Sidebar2State extends State<Sidebar2> {
                     Text(
                       'IntelliCloud',
                       style:
-                          Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: AppColors.mintGreen,
                               ),
                     ),

@@ -366,56 +366,52 @@ class StartScreen extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  Text('You can save:',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium),
-                                  Text('64.3%',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall
-                                          ?.copyWith(
-                                              fontWeight: FontWeight.w800,
-                                              color: AppColors.mintGreen)),
-                                ],
-                              ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Text('You can save:',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium),
+                                Text('64.3%',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineSmall
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.w800,
+                                            color: AppColors.mintGreen)),
+                              ],
                             ),
-                            SizedBox(
-                              height: 95,
-                              child: SfCartesianChart(
-                                primaryXAxis: CategoryAxis(
+                          ),
+                          SizedBox(
+                            height: 95,
+                            child: SfCartesianChart(
+                              primaryXAxis: CategoryAxis(
+                                isVisible: false,
+                              ),
+                              primaryYAxis: NumericAxis(
                                   isVisible: false,
-                                ),
-                                primaryYAxis: NumericAxis(
-                                    isVisible: false,
-                                    minimum: 0,
-                                    maximum: 80,
-                                    interval: 20),
-                                series: <CartesianSeries<dynamic, String>>[
-                                  BarSeries<_ChartData, String>(
-                                      borderRadius: BorderRadius.circular(10),
-                                      dataSource: data,
-                                      xValueMapper: (_ChartData data, _) =>
-                                          data.x,
-                                      yValueMapper: (_ChartData data, index) =>
-                                          data.y,
-                                      name: 'Savings',
-                                      color:
-                                          AppColors.mintGreen.withAlpha(180)),
-                                ],
-                              ),
+                                  minimum: 0,
+                                  maximum: 80,
+                                  interval: 20),
+                              series: <CartesianSeries<dynamic, String>>[
+                                BarSeries<_ChartData, String>(
+                                    borderRadius: BorderRadius.circular(10),
+                                    dataSource: data,
+                                    xValueMapper: (_ChartData data, _) =>
+                                        data.x,
+                                    yValueMapper: (_ChartData data, index) =>
+                                        data.y,
+                                    name: 'Savings',
+                                    color: AppColors.mintGreen.withAlpha(180)),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
