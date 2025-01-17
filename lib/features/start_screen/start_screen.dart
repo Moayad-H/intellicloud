@@ -13,8 +13,8 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<_ChartData> data = [
-      _ChartData(15, 'IC'),
-      _ChartData(80, 'EKS'),
+      _ChartData(15, 'IC', color: AppColors.mintGreen),
+      _ChartData(80, 'EKS', color: primaryColor.withAlpha(150)),
     ];
     List<_ChartData> data2 = [
       _ChartData(0, 'IC'),
@@ -100,7 +100,7 @@ class StartScreen extends StatelessWidget {
                   //   )
                   // ],
                   color: secondaryColor,
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  borderRadius: BorderRadius.all(Radius.circular(4)),
                 ),
                 height: 100,
                 //TODO REsposive
@@ -174,7 +174,7 @@ class StartScreen extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 50,
+          height: 20,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,6 +185,7 @@ class StartScreen extends StatelessWidget {
                 height: 250,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
+                  border: Border.all(color: secondaryColor),
                   // boxShadow: [
                   //   BoxShadow(
                   //     color: AppColors.softCyan.withAlpha(120),
@@ -192,7 +193,7 @@ class StartScreen extends StatelessWidget {
                   //     blurRadius: 1,
                   //   )
                   // ],
-                  color: secondaryColor.withAlpha(125),
+                  color: AppColors.charcoalGray.withAlpha(100),
                   borderRadius: BorderRadius.all(Radius.circular(2)),
                 ),
                 child: Column(
@@ -201,7 +202,8 @@ class StartScreen extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: secondaryColor,
+                        color: AppColors.charcoalGray.withAlpha(100),
+                        border: Border.all(color: secondaryColor),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -245,8 +247,7 @@ class StartScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Column(
                               children: [
                                 Text('Compute Spend:',
@@ -263,39 +264,38 @@ class StartScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
-                              height: 100,
-                              child: SfCartesianChart(
-                                  enableAxisAnimation: false,
-                                  primaryXAxis: CategoryAxis(
+                          Expanded(
+                            child: SfCartesianChart(
+                                enableAxisAnimation: false,
+                                primaryXAxis: CategoryAxis(
+                                  isVisible: false,
+                                  rangePadding: ChartRangePadding.none,
+                                ),
+                                primaryYAxis: NumericAxis(
                                     isVisible: false,
-                                    rangePadding: ChartRangePadding.none,
-                                  ),
-                                  primaryYAxis: NumericAxis(
-                                      isVisible: false,
-                                      minimum: 0,
-                                      maximum: 80,
-                                      interval: 20),
-                                  series: <CartesianSeries<dynamic, String>>[
-                                    SplineAreaSeries<_ChartData, String>(
-                                        dataSource: data2,
-                                        xValueMapper: (_ChartData data, _) =>
-                                            data.x,
-                                        yValueMapper:
-                                            (_ChartData data, index) => data.y,
-                                        name: 'Savings',
-                                        color:
-                                            AppColors.mintGreen.withAlpha(200)),
-                                    SplineAreaSeries<_ChartData, String>(
-                                        dataSource: data2,
-                                        xValueMapper: (_ChartData data, _) =>
-                                            data.x,
-                                        yValueMapper:
-                                            (_ChartData data, index) =>
-                                                data.y + -20,
-                                        name: 'Savings',
-                                        color: AppColors.softCyan)
-                                  ])),
+                                    minimum: 0,
+                                    maximum: 80,
+                                    interval: 20),
+                                series: <CartesianSeries<dynamic, String>>[
+                                  SplineAreaSeries<_ChartData, String>(
+                                      dataSource: data2,
+                                      xValueMapper: (_ChartData data, _) =>
+                                          data.x,
+                                      yValueMapper: (_ChartData data, index) =>
+                                          data.y,
+                                      name: 'Savings',
+                                      color:
+                                          AppColors.mintGreen.withAlpha(200)),
+                                  SplineAreaSeries<_ChartData, String>(
+                                      dataSource: data2,
+                                      xValueMapper: (_ChartData data, _) =>
+                                          data.x,
+                                      yValueMapper: (_ChartData data, index) =>
+                                          data.y + -20,
+                                      name: 'Savings',
+                                      color: AppColors.softCyan)
+                                ]),
+                          ),
                         ],
                       ),
                     ),
@@ -318,7 +318,7 @@ class StartScreen extends StatelessWidget {
                   //     blurRadius: 1,
                   //   )
                   // ],
-                  color: secondaryColor.withAlpha(125),
+                  border: Border.all(color: secondaryColor),
                   borderRadius: BorderRadius.all(Radius.circular(2)),
                 ),
                 child: Column(
@@ -327,7 +327,8 @@ class StartScreen extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: secondaryColor,
+                        border: Border.all(color: secondaryColor),
+                        color: AppColors.charcoalGray.withAlpha(100),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -366,52 +367,58 @@ class StartScreen extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Text('You can save:',
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium),
-                                Text('64.3%',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall
-                                        ?.copyWith(
-                                            fontWeight: FontWeight.w800,
-                                            color: AppColors.mintGreen)),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 95,
-                            child: SfCartesianChart(
-                              primaryXAxis: CategoryAxis(
-                                isVisible: false,
+                      child: Container(
+                        color: AppColors.charcoalGray.withAlpha(100),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text('You can save:',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium),
+                                  Text('64.3%',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.w800,
+                                              color: AppColors.mintGreen)),
+                                ],
                               ),
-                              primaryYAxis: NumericAxis(
-                                  isVisible: false,
-                                  minimum: 0,
-                                  maximum: 80,
-                                  interval: 20),
-                              series: <CartesianSeries<dynamic, String>>[
-                                BarSeries<_ChartData, String>(
-                                    borderRadius: BorderRadius.circular(10),
-                                    dataSource: data,
-                                    xValueMapper: (_ChartData data, _) =>
-                                        data.x,
-                                    yValueMapper: (_ChartData data, index) =>
-                                        data.y,
-                                    name: 'Savings',
-                                    color: AppColors.mintGreen.withAlpha(180)),
-                              ],
                             ),
-                          ),
-                        ],
+                            Expanded(
+                              child: SfCartesianChart(
+                                primaryXAxis: CategoryAxis(
+                                  isVisible: false,
+                                ),
+                                primaryYAxis: NumericAxis(
+                                    isVisible: false,
+                                    minimum: 0,
+                                    maximum: 80,
+                                    interval: 20),
+                                series: <CartesianSeries<dynamic, String>>[
+                                  BarSeries<_ChartData, String>(
+                                      pointColorMapper: (_ChartData data, _) =>
+                                          data.color,
+                                      borderRadius: BorderRadius.circular(10),
+                                      dataSource: data,
+                                      xValueMapper: (_ChartData data, _) =>
+                                          data.x,
+                                      yValueMapper: (_ChartData data, index) =>
+                                          data.y,
+                                      name: 'Savings',
+                                      color:
+                                          AppColors.mintGreen.withAlpha(180)),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -438,7 +445,7 @@ class StartScreen extends StatelessWidget {
                   //     blurRadius: 1,
                   //   )
                   // ],
-                  color: secondaryColor.withAlpha(125),
+                  color: secondaryColor,
                   borderRadius: BorderRadius.all(Radius.circular(2)),
                 ),
                 child: Row(
@@ -525,11 +532,9 @@ void connectClusterDialog(BuildContext context) {
 }
 
 class _ChartData {
-  _ChartData(
-    this.y,
-    this.x,
-  );
+  _ChartData(this.y, this.x, {this.color});
 
   final String x;
+  final Color? color;
   final double y;
 }

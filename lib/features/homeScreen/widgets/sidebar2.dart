@@ -72,8 +72,17 @@ class _Sidebar2State extends State<Sidebar2> {
             title: 'Available Savings',
             onTap: (index, _) {
               dashboardCubit.updateActiveTab(index);
+              context.go(AppRoutes.availableSavings);
             },
             icon: Icon(Icons.monetization_on_sharp),
+          ),
+          SideMenuItem(
+            title: 'Node List',
+            onTap: (index, _) {
+              dashboardCubit.updateActiveTab(index);
+              // context.go(AppRoutes.availableSavings);
+            },
+            icon: Icon(Icons.device_hub),
           )
         ],
       ),
@@ -93,6 +102,7 @@ class _Sidebar2State extends State<Sidebar2> {
       //   },
       //   icon: Icon(Icons.monetization_on_sharp),
       // ),
+
       SideMenuItem(
         title: 'Settings',
         onTap: (index, _) {
