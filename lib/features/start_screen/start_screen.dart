@@ -497,7 +497,7 @@ class StartScreen extends StatelessWidget {
                                       BorderRadius.all(Radius.circular(4)),
                                 ),
                                 child: TextButton(
-                                    onPressed: () {
+                                    onPressed: () async {
                                       connectClusterDialog(context);
                                     },
                                     child: Text(
@@ -524,7 +524,7 @@ class StartScreen extends StatelessWidget {
   }
 }
 
-void connectClusterDialog(BuildContext context) {
+void connectClusterDialog(BuildContext context) async {
   showDialog(
       // barrierDismissible: true,
       context: context,

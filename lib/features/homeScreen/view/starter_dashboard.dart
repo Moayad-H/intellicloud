@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
+import 'package:intellicloud/data/models/cluster_data_model.dart';
 import 'package:intellicloud/features/homeScreen/widgets/appbar.dart';
 import 'package:intellicloud/features/homeScreen/widgets/sidebar2.dart';
+import 'package:intellicloud/network/api_service.dart';
 
 class MainContent extends StatefulWidget {
   MainContent({super.key, required this.child});
@@ -13,10 +15,13 @@ class MainContent extends StatefulWidget {
 }
 
 class _MainContentState extends State<MainContent> {
+  final ApiService _apiService = ApiService();
+  late Future<Cluster> _clusterFuture;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _clusterFuture = _apiService.getClusterById(1);
     context.read<DashboardCubit>().loadMetrics();
   }
 

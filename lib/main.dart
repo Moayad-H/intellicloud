@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/controllers/page_controller/page_cubit.dart';
+import 'package:intellicloud/network/api_service.dart';
 import 'package:intellicloud/routes/app_routes.dart';
 import 'package:intellicloud/theme.dart';
 import 'controllers/home_screen/dashboard_cubit.dart';
@@ -14,8 +17,21 @@ void main() {
   ], child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    ApiService.initialize();
+    log("DioHelper initialized");
+    super.initState();
+  }
 
   // This widget is the root of your application.
   @override
