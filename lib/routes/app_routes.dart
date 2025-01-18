@@ -15,39 +15,39 @@ class AppRoutes {
   static const String reports = '/reports';
   static const String availableSavings = '/cluster/available_savings';
   static const String settings = '/settings';
-  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
+  static final shellNavigatorKey = GlobalKey<NavigatorState>();
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   final router = GoRouter(
     debugLogDiagnostics: true,
     initialLocation: startScreen,
     routes: [
       ShellRoute(
-          navigatorKey: _shellNavigatorKey,
+          navigatorKey: shellNavigatorKey,
           builder: (context, state, child) => MainContent(
                 child: child,
               ),
           routes: [
             GoRoute(
                 path: startScreen,
-                parentNavigatorKey: _shellNavigatorKey,
+                parentNavigatorKey: shellNavigatorKey,
                 pageBuilder: (context, state) => buildPageWithSlideTransition(
                       child: StartScreen(),
                     )),
             GoRoute(
                 path: clusterDashboard,
-                parentNavigatorKey: _shellNavigatorKey,
+                parentNavigatorKey: shellNavigatorKey,
                 pageBuilder: (context, state) => buildPageWithSlideTransition(
                       child: ClusterDashboard(),
                     )),
             GoRoute(
                 path: availableSavings,
-                parentNavigatorKey: _shellNavigatorKey,
+                parentNavigatorKey: shellNavigatorKey,
                 pageBuilder: (context, state) => buildPageWithSlideTransition(
                       child: AvailableSavings(),
                     )),
             GoRoute(
                 path: energyConsumption,
-                parentNavigatorKey: _shellNavigatorKey,
+                parentNavigatorKey: shellNavigatorKey,
                 pageBuilder: (context, state) => buildPageWithSlideTransition(
                       child: EnergyConsumptionScreen(),
                     )),

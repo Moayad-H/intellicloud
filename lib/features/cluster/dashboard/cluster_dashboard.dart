@@ -2,9 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
+import 'package:intellicloud/data/models/cluster_data_model.dart';
 import 'package:intellicloud/features/cluster/dashboard/components/cluster_details_component.dart';
 import 'package:intellicloud/features/cluster/dashboard/components/utilization_column_chart.dart';
 import 'package:intellicloud/features/cluster/dashboard/components/widgets/cluster_utilization_dougnut.dart';
+import 'package:intellicloud/network/api_service.dart';
 import 'package:intellicloud/utils/divider_with_sizedbox.dart';
 
 class ClusterDashboard extends StatefulWidget {
@@ -30,6 +32,14 @@ class ClusterDashboardState extends State<ClusterDashboard> {
     ChartData('requested', 0, primaryColor),
     ChartData('Remaining', 35, Colors.transparent)
   ];
+  final ApiService _apiService = ApiService();
+  late Future<Cluster> _clusterFuture;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

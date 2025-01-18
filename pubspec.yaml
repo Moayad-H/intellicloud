@@ -46,6 +46,8 @@ dependencies:
   lottie: ^3.3.0
   flutter_svg: ^2.0.17
   auto_size_text: ^3.0.0
+  dio: ^5.7.0
+  dartz: ^0.10.1
   
 
 dev_dependencies:
