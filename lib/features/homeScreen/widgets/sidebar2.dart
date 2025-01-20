@@ -23,7 +23,7 @@ class _Sidebar2State extends State<Sidebar2> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<DashboardCubit>().loadActiveTabIndex();
+    context.read<DashboardCubit>().loadActiveTabIndex(context);
   }
 
   @override
@@ -35,8 +35,7 @@ class _Sidebar2State extends State<Sidebar2> {
         title: 'Cluster List',
         onTap: (index, _) {
           // sideMenu.changePage(index);
-          dashboardCubit.updateActiveTab(index);
-          context.go(AppRoutes.startScreen);
+          dashboardCubit.updateActiveTab(index, AppRoutes.startScreen, context);
         },
         icon: Icon(Icons.home),
         badgeContent: Text(
@@ -56,30 +55,30 @@ class _Sidebar2State extends State<Sidebar2> {
           SideMenuItem(
             title: 'Dashboard',
             onTap: (index, _) {
-              dashboardCubit.updateActiveTab(index);
-              context.go(AppRoutes.clusterDashboard);
+              dashboardCubit.updateActiveTab(
+                  index, AppRoutes.clusterDashboard, context);
             },
             icon: const Icon(Icons.speed),
           ),
           SideMenuItem(
             title: 'Cost Monitoring',
             onTap: (index, _) {
-              dashboardCubit.updateActiveTab(index);
+              // dashboardCubit.updateActiveTab(index, 'Cost Monitoring', context);
             },
             icon: const Icon(Icons.bar_chart),
           ),
           SideMenuItem(
             title: 'Available Savings',
             onTap: (index, _) {
-              dashboardCubit.updateActiveTab(index);
-              context.go(AppRoutes.availableSavings);
+              dashboardCubit.updateActiveTab(
+                  index, AppRoutes.availableSavings, context);
             },
             icon: Icon(Icons.monetization_on_sharp),
           ),
           SideMenuItem(
             title: 'Node List',
             onTap: (index, _) {
-              dashboardCubit.updateActiveTab(index);
+              // dashboardCubit.updateActiveTab(index, '', context);
               // context.go(AppRoutes.availableSavings);
             },
             icon: Icon(Icons.device_hub),
@@ -106,8 +105,8 @@ class _Sidebar2State extends State<Sidebar2> {
       SideMenuItem(
         title: 'Settings',
         onTap: (index, _) {
-          dashboardCubit.updateActiveTab(index);
-          context.go(AppRoutes.energyConsumption);
+          dashboardCubit.updateActiveTab(
+              index, AppRoutes.energyConsumption, context);
         },
         icon: Icon(Icons.settings),
       ),

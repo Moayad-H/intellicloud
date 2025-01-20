@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
-import 'package:intellicloud/features/cluster/dashboard/cluster_dashboard.dart';
+import 'package:intellicloud/features/cluster/cluster_dashboard/cluster_dashboard.dart';
 import 'package:intellicloud/features/cluster/dashboard/components/widgets/info_vertical_divider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

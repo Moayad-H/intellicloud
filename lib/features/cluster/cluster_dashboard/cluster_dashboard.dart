@@ -96,7 +96,7 @@ class ClusterDashboardState extends State<ClusterDashboard> {
             avgRequested: '2343',
             avgProvisioned: '2345',
             avgUsed: '223',
-            utilizationFor: 'CPU Utilization'),
+            utilizationFor: 'CPU'),
         SizedBox(
           height: 20,
         ),
@@ -104,7 +104,7 @@ class ClusterDashboardState extends State<ClusterDashboard> {
             avgRequested: '1223',
             avgProvisioned: '2345',
             avgUsed: '223',
-            utilizationFor: 'Memory Utilization'),
+            utilizationFor: 'Memory'),
         SizedBox(
           height: 20,
         ),
@@ -112,7 +112,7 @@ class ClusterDashboardState extends State<ClusterDashboard> {
             avgRequested: '1223',
             avgProvisioned: '2345',
             avgUsed: '223',
-            utilizationFor: 'Storage Utilization'),
+            utilizationFor: 'Storage'),
         SizedBox(
           height: 10,
         ),

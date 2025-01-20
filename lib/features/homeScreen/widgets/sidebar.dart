@@ -79,7 +79,7 @@ class SidebarNavigation extends StatelessWidget {
       ),
       onTap: () {
         if (route != activeRoute) {
-          context.read<DashboardCubit>().updateActiveTab(index);
+          // context.read<DashboardCubit>().updateActiveTab(index);
           GoRouter.of(context).push(route);
         }
       },
