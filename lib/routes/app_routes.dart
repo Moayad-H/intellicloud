@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intellicloud/features/cluster/available_savings/available_savings.dart';
 import 'package:intellicloud/features/cluster/cluster_dashboard/cluster_dashboard.dart';
 import 'package:intellicloud/features/costSavings/view/energy_consumption_screen.dart';
-import 'package:intellicloud/features/homeScreen/view/starter_dashboard.dart';
+import 'package:intellicloud/mainScreen/view/main_layout.dart';
 import 'package:intellicloud/features/start_screen/start_screen.dart';
 import 'package:intellicloud/utils/custom_transition.dart';
 
@@ -23,7 +23,7 @@ class AppRoutes {
     routes: [
       ShellRoute(
           navigatorKey: shellNavigatorKey,
-          builder: (context, state, child) => MainContent(
+          builder: (context, state, child) => MainLayout(
                 child: child,
               ),
           routes: [

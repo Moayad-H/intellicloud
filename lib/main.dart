@@ -4,16 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
+import 'package:intellicloud/controllers/clusters/cluster_cubit.dart';
 import 'package:intellicloud/controllers/page_controller/page_cubit.dart';
 import 'package:intellicloud/network/api_service.dart';
 import 'package:intellicloud/routes/app_routes.dart';
 import 'package:intellicloud/theme.dart';
 import 'controllers/home_screen/dashboard_cubit.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(MultiBlocProvider(providers: [
-    BlocProvider(create: (_) => DashboardCubit()), // Provide the DashboardCubit
-    BlocProvider(create: (_) => PageCubit()), // Provide the PageCubit
+    BlocProvider(create: (_) => DashboardCubit()),
+    BlocProvider(create: (_) => PageCubit()),
+    BlocProvider(create: (_) => ClusterCubit()),
   ], child: MyApp()));
 }
 

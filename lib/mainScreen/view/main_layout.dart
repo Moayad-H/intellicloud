@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
-import 'package:intellicloud/data/models/cluster_data_model.dart';
-import 'package:intellicloud/features/homeScreen/widgets/appbar.dart';
-import 'package:intellicloud/features/homeScreen/widgets/sidebar2.dart';
-import 'package:intellicloud/network/api_service.dart';
+import 'package:intellicloud/mainScreen/widgets/appbar.dart';
+import 'package:intellicloud/mainScreen/widgets/sidebar2.dart';
 
-class MainContent extends StatefulWidget {
-  MainContent({super.key, required this.child});
+class MainLayout extends StatefulWidget {
+  MainLayout({super.key, required this.child});
   Widget child;
 
   @override
-  State<MainContent> createState() => _MainContentState();
+  State<MainLayout> createState() => _MainLayoutState();
 }
 
-class _MainContentState extends State<MainContent> {
-  final ApiService _apiService = ApiService();
-  late Future<Cluster> _clusterFuture;
+class _MainLayoutState extends State<MainLayout> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _clusterFuture = _apiService.getClusterById(1);
     context.read<DashboardCubit>().loadMetrics();
   }
 
