@@ -54,6 +54,7 @@ class ClusterUtilizationDougnut extends StatelessWidget {
                     height: 220,
                     width: 200,
                     child: SfCircularChart(
+                      tooltipBehavior: TooltipBehavior(enable: true),
                       annotations: <CircularChartAnnotation>[
                         CircularChartAnnotation(
                           widget: Column(

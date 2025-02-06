@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
+import 'package:intellicloud/controllers/authentication/auth_cubit.dart';
 import 'package:intellicloud/controllers/clusters/cluster_cubit.dart';
 import 'package:intellicloud/controllers/page_controller/page_cubit.dart';
 import 'package:intellicloud/network/api_service.dart';
@@ -23,6 +24,7 @@ void main() async {
     BlocProvider(create: (_) => DashboardCubit()),
     BlocProvider(create: (_) => PageCubit()),
     BlocProvider(create: (_) => ClusterCubit()),
+    BlocProvider(create: (context) => AuthCubit()..checkAuthStatus()),
   ], child: MyApp()));
 }
 

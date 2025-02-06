@@ -506,6 +506,8 @@ class AvailableSavings extends StatelessWidget {
                                     child: SizedBox(
                                       height: 350,
                                       child: SfCartesianChart(
+                                        tooltipBehavior:
+                                            TooltipBehavior(enable: true),
                                         margin: EdgeInsets.all(0),
                                         primaryXAxis: CategoryAxis(
                                           minimum: 0,

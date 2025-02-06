@@ -99,8 +99,13 @@ class UtilizationColumnChart extends StatelessWidget {
                         children: [
                           Expanded(
                             child: SfCartesianChart(
+                              tooltipBehavior: TooltipBehavior(
+                                  activationMode: ActivationMode.singleTap,
+                                  enable: true),
                               margin: EdgeInsets.symmetric(horizontal: 10),
                               primaryXAxis: CategoryAxis(
+                                interactiveTooltip:
+                                    InteractiveTooltip(enable: true),
                                 rangePadding: ChartRangePadding.auto,
                                 axisLine: AxisLine(
                                     color: AppColors.lightGray.withAlpha(100)),
