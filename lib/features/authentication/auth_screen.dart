@@ -33,7 +33,13 @@ class _AuthScreenState extends State<AuthScreen> {
         listener: (context, state) {
           if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
+              SnackBar(
+                backgroundColor: Colors.red,
+                content: Text(
+                  state.message,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ),
             );
           } else if (state is AuthAuthenticated) {
             DashboardCubit.get(context)
@@ -67,171 +73,168 @@ class _AuthScreenState extends State<AuthScreen> {
                       borderRadius: BorderRadius.circular(10)),
                   width: _expandContainer ? 600 : 500,
                   height: _expandContainer ? 500 : 400,
-                  child: Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              width: 100,
-                              height: 100,
-                              AppAssets.intelliCloudLogo,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'IntelliCloud',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineLarge
-                                  ?.copyWith(
-                                    color: AppColors.mintGreen,
-                                  ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                        if (_isExpanded)
-                          TextFormField(
-                            controller: _nameController,
-                            decoration: InputDecoration(
-                              floatingLabelStyle:
-                                  TextStyle(color: AppColors.lightGray),
-                              fillColor: AppColors.darkTeal,
-                              icon: Icon(
-                                Icons.person,
-                                color: AppColors.mintGreen,
-                              ),
-                              labelText: 'Name',
-                            ),
-                            validator: (value) =>
-                                value!.isEmpty ? 'Name required' : null,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            width: 100,
+                            height: 100,
+                            AppAssets.intelliCloudLogo,
                           ),
-                        if (_isExpanded) SizedBox(height: 10),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'IntelliCloud',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge
+                                ?.copyWith(
+                                  color: AppColors.mintGreen,
+                                ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                      if (_isExpanded)
                         TextFormField(
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                          ],
+                          controller: _nameController,
                           decoration: InputDecoration(
                             floatingLabelStyle:
                                 TextStyle(color: AppColors.lightGray),
-                            icon: Icon(Icons.email, color: AppColors.mintGreen),
-                            labelText: 'Email',
                             fillColor: AppColors.darkTeal,
-                            errorStyle: TextStyle(color: AppColors.errorRed),
-                            errorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: AppColors.errorRed),
+                            icon: Icon(
+                              Icons.person,
+                              color: AppColors.mintGreen,
                             ),
-                            focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: AppColors.errorRed),
-                            ),
+                            labelText: 'Name',
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter an email address';
-                            }
-                            if (!_emailRegex.hasMatch(value)) {
-                              return 'Please enter a valid email address';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: _passwordController,
-                          obscureText: true,
                           validator: (value) =>
-                              value!.isEmpty ? 'Password required' : null,
-                          decoration: InputDecoration(
-                            floatingLabelStyle:
-                                TextStyle(color: AppColors.lightGray),
-                            icon: Icon(Icons.lock, color: AppColors.mintGreen),
-                            fillColor: AppColors.darkTeal,
-                            labelText: 'Password',
+                              value!.isEmpty ? 'Name required' : null,
+                        ),
+                      if (_isExpanded) SizedBox(height: 10),
+                      TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                        ],
+                        decoration: InputDecoration(
+                          floatingLabelStyle:
+                              TextStyle(color: AppColors.lightGray),
+                          icon: Icon(Icons.email, color: AppColors.mintGreen),
+                          labelText: 'Email',
+                          fillColor: AppColors.darkTeal,
+                          errorStyle: TextStyle(color: AppColors.errorRed),
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: AppColors.errorRed),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: AppColors.errorRed),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        _isLoading
-                            ? const CircularProgressIndicator()
-                            : Container(
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: AppColors.softCyan.withAlpha(80),
-                                      spreadRadius: 2,
-                                      blurRadius: 1,
-                                    )
-                                  ],
-                                  color: AppColors.mintGreen.withAlpha(100),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4)),
-                                ),
-                                child: TextButton(
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      if (_isExpanded) {
-                                        context.read<AuthCubit>().register(
-                                              _emailController.text,
-                                              _passwordController.text,
-                                              _nameController.text,
-                                            );
-                                      } else {
-                                        context.read<AuthCubit>().login(
-                                              _emailController.text,
-                                              _passwordController.text,
-                                            );
-                                      }
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter an email address';
+                          }
+                          if (!_emailRegex.hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Password required' : null,
+                        decoration: InputDecoration(
+                          floatingLabelStyle:
+                              TextStyle(color: AppColors.lightGray),
+                          icon: Icon(Icons.lock, color: AppColors.mintGreen),
+                          fillColor: AppColors.darkTeal,
+                          labelText: 'Password',
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      _isLoading
+                          ? const CircularProgressIndicator()
+                          : Container(
+                              width: 100,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.softCyan.withAlpha(80),
+                                    spreadRadius: 2,
+                                    blurRadius: 1,
+                                  )
+                                ],
+                                color: AppColors.mintGreen.withAlpha(100),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4)),
+                              ),
+                              child: TextButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    if (_isExpanded) {
+                                      context.read<AuthCubit>().register(
+                                            _emailController.text,
+                                            _passwordController.text,
+                                            _nameController.text,
+                                          );
+                                    } else {
+                                      context.read<AuthCubit>().login(
+                                            _emailController.text,
+                                            _passwordController.text,
+                                          );
                                     }
-                                  },
-                                  child: Text(
-                                    _isExpanded ? 'Register' : 'Login',
-                                    style:
-                                        Theme.of(context).textTheme.labelLarge,
-                                  ),
+                                  }
+                                },
+                                child: Text(
+                                  _isExpanded ? 'Register' : 'Login',
+                                  style: Theme.of(context).textTheme.labelLarge,
                                 ),
                               ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(_isExpanded == true
-                                ? 'Already Have an Account ? '
-                                : 'No Account ? '),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _formKey.currentState?.reset();
-                                  _expandContainer = !_expandContainer;
-                                  _isLoading = true;
-                                  if (_expandContainer == false) {
-                                    _isExpanded = false;
-                                  }
-                                });
-                              },
-                              child: Text(
-                                  ' ${_isExpanded == false ? 'Create one!' : 'Login Instead'}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: AppColors.mintGreen,
-                                      )),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(_isExpanded == true
+                              ? 'Already Have an Account ? '
+                              : 'No Account ? '),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                _formKey.currentState?.reset();
+                                _expandContainer = !_expandContainer;
+                                _isLoading = true;
+                                if (_expandContainer == false) {
+                                  _isExpanded = false;
+                                }
+                              });
+                            },
+                            child: Text(
+                                ' ${_isExpanded == false ? 'Create one!' : 'Login Instead'}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: AppColors.mintGreen,
+                                    )),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

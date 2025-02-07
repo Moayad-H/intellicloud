@@ -17,6 +17,7 @@ class AuthService {
       return result.user;
     } catch (e) {
       log(e.toString());
+
       return null;
     }
   }

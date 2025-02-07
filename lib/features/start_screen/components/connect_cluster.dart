@@ -89,13 +89,15 @@ class ClusterConnectionScreenState extends State<ClusterConnectionScreen> {
                               text:
                                   'curl -H "Authorization: Token 7545a68eee65b60c1904541c6bb21642eb1f0dcf82333e1ed1ce9be1cdc58f84" '
                                   '"https://api.intellicloud.ai/v1/agent.yaml?provider=eks" | kubectl apply -f -'));
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            backgroundColor: Colors.teal,
-                            content: Text(
-                              'Script copied to clipboard!',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.teal,
+                              content: Text(
+                                'Script copied to clipboard!',
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
                             ),
-                          ));
+                          );
                         },
                         icon: Icon(Icons.copy, color: Colors.black),
                         label: Text(
