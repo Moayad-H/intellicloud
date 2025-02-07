@@ -6,14 +6,23 @@ import 'package:intellicloud/app_colors/colors.dart';
 import 'package:intellicloud/controllers/authentication/auth_cubit.dart';
 import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
 import 'package:intellicloud/routes/app_routes.dart';
+import 'package:intellicloud/utils/app_loader.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
+  AuthScreen({super.key});
+
+  @override
+  _AuthScreenState createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
+  bool _isExpanded = false;
+  bool _expandContainer = false;
+  bool _isLoading = false;
 
-  AuthScreen({super.key});
-//moayadhamzeh26@gmail.com
-//test1234
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +42,13 @@ class AuthScreen extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           return Center(
-            child: Container(
+            child: AnimatedContainer(
+              curve: Curves.easeOut,
+              onEnd: () => setState(() {
+                _isExpanded = _expandContainer;
+                _isLoading = false;
+              }),
+              duration: Duration(milliseconds: 500),
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                   color: secondaryColor,
@@ -45,8 +60,8 @@ class AuthScreen extends StatelessWidget {
                         color: Colors.grey.shade800),
                   ],
                   borderRadius: BorderRadius.circular(10)),
-              width: 500,
-              height: 350,
+              width: _expandContainer ? 600 : 500,
+              height: _expandContainer ? 450 : 350,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,6 +89,18 @@ class AuthScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  if (_isExpanded)
+                    TextField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        floatingLabelStyle:
+                            TextStyle(color: AppColors.lightGray),
+                        icon: Icon(Icons.person),
+                        labelText: 'Name',
+                        fillColor: AppColors.darkTeal,
+                      ),
+                    ),
+                  if (_isExpanded) SizedBox(height: 10),
                   TextField(
                     controller: _emailController,
                     decoration: InputDecoration(
@@ -97,39 +124,57 @@ class AuthScreen extends StatelessWidget {
                     obscureText: true,
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.softCyan.withAlpha(80),
-                          spreadRadius: 2,
-                          blurRadius: 1,
-                        )
-                      ],
-                      color: AppColors.mintGreen.withAlpha(100),
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        context.read<AuthCubit>().login(
-                              _emailController.text,
-                              _passwordController.text,
-                            );
-                      },
-                      child: Text(
-                        'Login',
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                    ),
-                  ),
+                  _isLoading
+                      ? const CircularProgressIndicator()
+                      : Container(
+                          width: 100,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.softCyan.withAlpha(80),
+                                spreadRadius: 2,
+                                blurRadius: 1,
+                              )
+                            ],
+                            color: AppColors.mintGreen.withAlpha(100),
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              _isExpanded == true
+                                  ? context.read<AuthCubit>().register(
+                                      _emailController.text,
+                                      _passwordController.text,
+                                      _nameController.text)
+                                  : context.read<AuthCubit>().login(
+                                        _emailController.text,
+                                        _passwordController.text,
+                                      );
+                            },
+                            child: Text(
+                              _isExpanded ? 'Register' : 'Login',
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                          ),
+                        ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text('No Account ? '),
+                      Text(_isExpanded == true
+                          ? 'Already Have an Account ? '
+                          : 'No Account ? '),
                       InkWell(
-                        onTap: () {},
-                        child: Text('Create one!',
+                        onTap: () {
+                          setState(() {
+                            _expandContainer = !_expandContainer;
+                            _isLoading = true;
+                            if (_expandContainer == false) {
+                              _isExpanded = false;
+                            }
+                          });
+                        },
+                        child: Text(
+                            ' ${_isExpanded == false ? 'Create one!' : 'Login Instead'}',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intellicloud/app_assets/app_assets.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
+import 'package:intellicloud/controllers/authentication/auth_cubit.dart';
 import 'package:intellicloud/controllers/clusters/cluster_cubit.dart';
 import 'package:intellicloud/controllers/clusters/cluster_states.dart';
 import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
@@ -64,7 +65,7 @@ class _StartScreenState extends State<StartScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Welcome, Moayad',
+                    'Welcome, ${AuthCubit.get(context).loggedUser?.name ?? ''}',
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                           color: AppColors.mintGreen,
                           letterSpacing: 1.2,
