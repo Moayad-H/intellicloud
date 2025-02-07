@@ -30,6 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
 
       emit(AuthAuthenticated(userCredential!));
     } on FirebaseAuthException catch (e) {
+      log('ERRRRROORRRR');
       emit(AuthError(e.message ?? 'Login failed'));
     }
   }
