@@ -24,12 +24,18 @@ class AuthCubit extends Cubit<AuthState> {
         email,
         password,
       );
-      loggedUser = await userProfileService.getUserProfile();
+
+      if (userCredential != null) {
+        loggedUser = await userProfileService.getUserProfile();
+      } else {
+        emit(AuthError('Login failed'));
+      }
 
       log(loggedUser.toString());
 
       emit(AuthAuthenticated(userCredential!));
     } on FirebaseAuthException catch (e) {
+      log('ERRRRROORRRR');
       emit(AuthError(e.message ?? 'Login failed'));
     }
   }
@@ -41,7 +47,11 @@ class AuthCubit extends Cubit<AuthState> {
         email,
         password,
       );
-      await createUserDocument(userCredential, name);
+      if (userCredential == null) {
+        emit(AuthError('Login failed'));
+      } else {
+        await createUserDocument(userCredential, name);
+      }
       loggedUser = await userProfileService.getUserProfile();
       emit(AuthAuthenticated(userCredential!));
     } on FirebaseAuthException catch (e) {
