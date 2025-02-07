@@ -5,9 +5,6 @@ import 'package:intellicloud/app_assets/app_assets.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
 import 'package:intellicloud/controllers/authentication/auth_cubit.dart';
-import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
-import 'package:intellicloud/routes/app_routes.dart';
-import 'package:intellicloud/utils/app_loader.dart';
 
 class AuthScreen extends StatefulWidget {
   AuthScreen({super.key});
@@ -41,9 +38,6 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               ),
             );
-          } else if (state is AuthAuthenticated) {
-            DashboardCubit.get(context)
-                .updateActiveTab(0, AppRoutes.startScreen, context);
           }
         },
         builder: (context, state) {

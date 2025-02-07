@@ -7,6 +7,7 @@ import 'package:equatable/equatable.dart';
 import 'package:intellicloud/data/models/use_model.dart';
 import 'package:intellicloud/data/repositories/authentication_repo.dart';
 import 'package:intellicloud/data/repositories/user_repo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
