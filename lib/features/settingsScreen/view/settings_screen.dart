@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intellicloud/routes/app_routes.dart';
-import 'package:intellicloud/features/homeScreen/widgets/sidebar.dart';
+import 'package:intellicloud/mainScreen/widgets/sidebar.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:intellicloud/app_assets/app_assets.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
+import 'package:intellicloud/data/models/cluster_data_model.dart';
 import 'package:intellicloud/features/cluster/cluster_dashboard/components/widgets/cluster_info_row_widget.dart';
 
 class ClusterInfoWidget extends StatelessWidget {
-  const ClusterInfoWidget({super.key});
+  const ClusterInfoWidget({super.key, required this.cluster});
+  final Cluster cluster;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class ClusterInfoWidget extends StatelessWidget {
                         ?.copyWith(color: AppColors.lightGray),
                   ),
                   AutoSizeText(
-                    'Active',
+                    cluster.status,
                     maxLines: 1,
                     minFontSize: 14,
                     style: Theme.of(context)
@@ -67,7 +69,8 @@ class ClusterInfoWidget extends StatelessWidget {
                       title: 'Provider',
                       icon: AppAssets.eksIcon,
                     ),
-                    ClusterInfoRowWidget(title: 'Region', value: 'Germany'),
+                    ClusterInfoRowWidget(
+                        title: 'Region', value: cluster.region),
                     ClusterInfoRowWidget(
                       title: 'Instance Type',
                       value: 't2.medium',
@@ -78,7 +81,7 @@ class ClusterInfoWidget extends StatelessWidget {
                     ),
                     ClusterInfoRowWidget(
                       title: 'Cluster Id',
-                      value: '11111111-1111-1111-1111-111111111111',
+                      value: cluster.id.toString(),
                     ),
                   ],
                 ),

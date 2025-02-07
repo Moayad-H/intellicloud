@@ -1,10 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
+import 'package:intellicloud/controllers/clusters/cluster_cubit.dart';
+import 'package:intellicloud/controllers/clusters/cluster_states.dart';
 import 'package:intellicloud/features/cluster/cluster_dashboard/components/cluster_details_component.dart';
 import 'package:intellicloud/features/cluster/cluster_dashboard/components/utilization_column_chart.dart';
 import 'package:intellicloud/features/cluster/cluster_dashboard/components/widgets/cluster_utilization_dougnut.dart';
+import 'package:intellicloud/utils/app_loader.dart';
 import 'package:intellicloud/utils/divider_with_sizedbox.dart';
 
 class ClusterDashboard extends StatefulWidget {
@@ -15,6 +19,12 @@ class ClusterDashboard extends StatefulWidget {
 }
 
 class ClusterDashboardState extends State<ClusterDashboard> {
+  @override
+  void initState() {
+    context.read<ClusterCubit>().loadClusters();
+    super.initState();
+  }
+
   List<ChartData> cPUchartData = [
     ChartData('used', 45, AppColors.mintGreen),
     ChartData('requested', 20, primaryColor),
@@ -32,91 +42,109 @@ class ClusterDashboardState extends State<ClusterDashboard> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            AutoSizeText(
-              'Dashboard',
-              maxLines: 1,
-              minFontSize: 14,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineLarge
-                  ?.copyWith(color: AppColors.softCyan),
-            ),
-          ],
-        ),
+    return BlocBuilder<ClusterCubit, ClusterState>(
+      builder: (context, state) {
+        if (state is ClusterLoading) {
+          return Center(
+            child: AppLoader(),
+          );
+        } else if (state is ClusterLoaded) {
+          return Column(
+            children: [
+              Row(
+                children: [
+                  AutoSizeText(
+                    'Dashboard',
+                    maxLines: 1,
+                    minFontSize: 14,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineLarge
+                        ?.copyWith(color: AppColors.softCyan),
+                  ),
+                ],
+              ),
 
-        Divider(
-          color: AppColors.textLightGray.withAlpha(50),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        // Cluster Details
-        ClusterDetailsComponent(),
-        DividerWithSizedbox(),
-        //TODO USAGE
-        Row(
-          children: [
-            ClusterUtilizationDougnut(
-                chartData: cPUchartData,
-                requested: '698.57',
-                used: '223',
-                utilizationFor: 'CPU\n',
-                isCPU: true,
-                provisioned: '65'),
-            SizedBox(
-              width: 20,
-            ),
-            ClusterUtilizationDougnut(
-                chartData: memchartData,
-                requested: '698.57',
-                used: '223',
-                utilizationFor: 'Memory\n',
-                isCPU: false,
-                provisioned: '5.8k'),
-            SizedBox(
-              width: 20,
-            ),
-            ClusterUtilizationDougnut(
-                chartData: storChartData,
-                requested: '--',
-                used: '--',
-                utilizationFor: 'Storage\n',
-                isCPU: false,
-                provisioned: '--'),
-          ],
-        ),
-        DividerWithSizedbox(),
-        //TODO Utilization
+              Divider(
+                color: AppColors.textLightGray.withAlpha(50),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              // Cluster Details
+              ClusterDetailsComponent(
+                cluster: state.cluster,
+              ),
+              DividerWithSizedbox(),
+              //TODO USAGE
+              Row(
+                children: [
+                  ClusterUtilizationDougnut(
+                      chartData: cPUchartData,
+                      requested: state.cluster.totalVcpu.toString(),
+                      used: '---',
+                      utilizationFor: 'CPU\n',
+                      isCPU: true,
+                      provisioned: '65'),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ClusterUtilizationDougnut(
+                      chartData: memchartData,
+                      requested: state.cluster.totalMemory.toString(),
+                      used: '---',
+                      utilizationFor: 'Memory\n',
+                      isCPU: false,
+                      provisioned: '5.8k'),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ClusterUtilizationDougnut(
+                      chartData: storChartData,
+                      requested: '--',
+                      used: '--',
+                      utilizationFor: 'Storage\n',
+                      isCPU: false,
+                      provisioned: '--'),
+                ],
+              ),
+              DividerWithSizedbox(),
+              //TODO Utilization
 
-        UtilizationColumnChart(
-            avgRequested: '2343',
-            avgProvisioned: '2345',
-            avgUsed: '223',
-            utilizationFor: 'CPU'),
-        SizedBox(
-          height: 20,
-        ),
-        UtilizationColumnChart(
-            avgRequested: '1223',
-            avgProvisioned: '2345',
-            avgUsed: '223',
-            utilizationFor: 'Memory'),
-        SizedBox(
-          height: 20,
-        ),
-        UtilizationColumnChart(
-            avgRequested: '1223',
-            avgProvisioned: '2345',
-            avgUsed: '223',
-            utilizationFor: 'Storage'),
-        SizedBox(
-          height: 10,
-        ),
-      ],
+              UtilizationColumnChart(
+                  avgRequested: '2343',
+                  avgProvisioned: '2345',
+                  avgUsed: '223',
+                  utilizationFor: 'CPU'),
+              SizedBox(
+                height: 20,
+              ),
+              UtilizationColumnChart(
+                  avgRequested: '1223',
+                  avgProvisioned: '2345',
+                  avgUsed: '223',
+                  utilizationFor: 'Memory'),
+              SizedBox(
+                height: 20,
+              ),
+              UtilizationColumnChart(
+                  avgRequested: '1223',
+                  avgProvisioned: '2345',
+                  avgUsed: '223',
+                  utilizationFor: 'Storage'),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          );
+        } else if (state is ClusterError) {
+          return Center(
+            child: Text(state.message),
+          );
+        } else {
+          return Container();
+        }
+      },
     );
   }
 }

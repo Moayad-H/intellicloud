@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/Users/moayadhamza/Documents/GitHub/intellicloud/windows/runner"
+    "cmake.sourceDirectory": "/Users/moayadhamza/Documents/GitHub/intellicloud/windows/runner",
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
