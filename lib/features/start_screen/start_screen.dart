@@ -8,6 +8,7 @@ import 'package:intellicloud/controllers/authentication/auth_cubit.dart';
 import 'package:intellicloud/controllers/clusters/cluster_cubit.dart';
 import 'package:intellicloud/controllers/clusters/cluster_states.dart';
 import 'package:intellicloud/controllers/home_screen/dashboard_cubit.dart';
+import 'package:intellicloud/features/redacted/redacted_screen.dart';
 import 'package:intellicloud/features/start_screen/components/connect_cluster.dart';
 import 'package:intellicloud/routes/app_routes.dart';
 import 'package:intellicloud/utils/app_loader.dart';
@@ -53,7 +54,7 @@ class _StartScreenState extends State<StartScreen> {
       builder: (context, state) {
         if (state is ClusterLoading) {
           return Center(
-            child: AppLoader(),
+            child: RedactedScreen(),
           );
         } else if (state is ClusterLoaded) {
           return Column(

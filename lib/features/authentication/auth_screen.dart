@@ -21,6 +21,7 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _isExpanded = false;
   bool _expandContainer = false;
   bool _isLoading = false;
+  bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
   final RegExp _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
@@ -159,10 +160,17 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       TextFormField(
                         controller: _passwordController,
-                        obscureText: true,
+                        obscureText: _isObscure,
                         validator: (value) =>
                             value!.isEmpty ? 'Password required' : null,
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                              onPressed: () => setState(() {
+                                    _isObscure = !_isObscure;
+                                  }),
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility)),
                           floatingLabelStyle:
                               TextStyle(color: AppColors.lightGray),
                           icon: Icon(Icons.lock, color: AppColors.mintGreen),

@@ -8,6 +8,7 @@ import 'package:intellicloud/controllers/clusters/cluster_states.dart';
 import 'package:intellicloud/features/cluster/cluster_dashboard/components/cluster_details_component.dart';
 import 'package:intellicloud/features/cluster/cluster_dashboard/components/utilization_column_chart.dart';
 import 'package:intellicloud/features/cluster/cluster_dashboard/components/widgets/cluster_utilization_dougnut.dart';
+import 'package:intellicloud/features/redacted/redacted_screen.dart';
 import 'package:intellicloud/utils/app_loader.dart';
 import 'package:intellicloud/utils/divider_with_sizedbox.dart';
 
@@ -46,7 +47,7 @@ class ClusterDashboardState extends State<ClusterDashboard> {
       builder: (context, state) {
         if (state is ClusterLoading) {
           return Center(
-            child: AppLoader(),
+            child: RedactedScreen(),
           );
         } else if (state is ClusterLoaded) {
           return Column(
