@@ -55,11 +55,54 @@ class ApiService {
     }
   }
 
+  Future<List<Node>> getAllNodes() async {
+    try {
+      final response = await _dio.get('nodes',
+          options: Options(
+            contentType: 'application/json',
+            method: 'GET',
+            validateStatus: (state) => state! < 500,
+          ));
+
+      // Handle direct list response
+      if (response.data is! List) {
+        throw FormatException(
+            'Expected list of nodes, got ${response.data.runtimeType}');
+      }
+
+      final List<dynamic> rawNodes = response.data as List<dynamic>;
+
+      // Convert with type safety
+      final List<Node> nodes = [];
+      for (final item in rawNodes) {
+        if (item is! Map<String, dynamic>) {
+          log('Skipping invalid node format: $item');
+          continue;
+        }
+
+        try {
+          nodes.add(Node.fromJson(item));
+        } catch (e) {
+          log('Error parsing node: $e\nData: $item');
+          rethrow; // Or handle differently
+        }
+      }
+
+      return nodes;
+    } catch (e) {
+      throw Exception('Failed to fetch nodes: ${e.toString()}');
+    }
+  }
+
   // Fetch a node by ID
-  Future<Node> getNodeById(int nodeId) async {
+  Future<List<Node>> getNodeById(int nodeId) async {
     try {
       final response = await _dio.get('nodes/$nodeId');
-      return Node.fromJson(response.data);
+      final List<dynamic> nodesData = response as List<dynamic>;
+      final List<Node> nodes = nodesData
+          .map((nodeJson) => Node.fromJson(nodeJson as Map<String, dynamic>))
+          .toList();
+      return nodes;
     } catch (e) {
       throw Exception('Failed to fetch node: $e');
     }

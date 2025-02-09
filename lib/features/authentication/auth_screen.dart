@@ -5,6 +5,7 @@ import 'package:intellicloud/app_assets/app_assets.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
 import 'package:intellicloud/controllers/authentication/auth_cubit.dart';
+import 'package:lottie/lottie.dart';
 
 class AuthScreen extends StatefulWidget {
   AuthScreen({super.key});
@@ -72,28 +73,37 @@ class _AuthScreenState extends State<AuthScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset(
-                            width: 100,
-                            height: 100,
-                            AppAssets.intelliCloudLogo,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                width: 100,
+                                height: 100,
+                                AppAssets.intelliCloudLogo,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'IntelliCloud',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineLarge
+                                    ?.copyWith(
+                                      color: AppColors.mintGreen,
+                                    ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
                           ),
                           SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'IntelliCloud',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineLarge
-                                ?.copyWith(
-                                  color: AppColors.mintGreen,
-                                ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
+                              width: 100,
+                              height: 100,
+                              child: Lottie.asset(AppAssets.loginLottie)),
                         ],
                       ),
                       if (_isExpanded)

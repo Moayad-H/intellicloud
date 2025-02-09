@@ -37,11 +37,12 @@ class _Sidebar2State extends State<Sidebar2> {
           // sideMenu.changePage(index);
           dashboardCubit.updateActiveTab(index, AppRoutes.startScreen, context);
         },
+        badgeColor: AppColors.softCyan,
         icon: Icon(Icons.home),
         badgeContent: Text(
-          '3',
+          '1',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),
@@ -78,7 +79,8 @@ class _Sidebar2State extends State<Sidebar2> {
           SideMenuItem(
             title: 'Node List',
             onTap: (index, _) {
-              // dashboardCubit.updateActiveTab(index, '', context);
+              dashboardCubit.updateActiveTab(
+                  index, AppRoutes.nodeList, context);
               // context.go(AppRoutes.availableSavings);
             },
             icon: Icon(Icons.device_hub),

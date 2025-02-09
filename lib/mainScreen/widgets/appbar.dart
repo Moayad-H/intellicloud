@@ -1,7 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:intellicloud/app_assets/app_assets.dart';
 import 'package:intellicloud/app_colors/color_constants.dart';
 import 'package:intellicloud/app_colors/colors.dart';
 import 'package:intellicloud/controllers/authentication/auth_cubit.dart';
+import 'package:intellicloud/features/pdfViewer/pdf_viewer.dart';
+import 'package:intellicloud/routes/app_routes.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class CustomAppbar extends StatefulWidget {
   CustomAppbar({super.key});
@@ -26,7 +33,10 @@ class _CustomAppbarState extends State<CustomAppbar> {
       //decoration: BoxDecoration(color: AppColors.brightWhite),
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context)
+                  .go(AppRoutes.pdfViewer, extra: 'pdfs/grad_doc.pdf');
+            },
             child: Text(
               'Documentation',
               style: Theme.of(context)
@@ -35,7 +45,12 @@ class _CustomAppbarState extends State<CustomAppbar> {
                   ?.copyWith(color: AppColors.lightGray),
             )),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              // PdfViewer(path: AppAssets.gradDoc);
+              // context.go('${AppRoutes.pdfViewer}/${AppAssets.apiDoc}');
+              GoRouter.of(context)
+                  .go(AppRoutes.pdfViewer, extra: 'pdfs/api_doc.pdf');
+            },
             child: Text(
               'API',
               style: Theme.of(context)
@@ -43,18 +58,18 @@ class _CustomAppbarState extends State<CustomAppbar> {
                   .titleMedium
                   ?.copyWith(color: AppColors.lightGray),
             )),
-        IconButton(
-          icon: Icon(Icons.dark_mode),
-          onPressed: () {
-            // Notification action
-          },
-        ),
-        IconButton(
-          icon: Icon(Icons.notifications),
-          onPressed: () {
-            // Notification action
-          },
-        ),
+        // IconButton(
+        //   icon: Icon(Icons.dark_mode),
+        //   onPressed: () {
+        //     // Notification action
+        //   },
+        // ),
+        // IconButton(
+        //   icon: Icon(Icons.notifications),
+        //   onPressed: () {
+        //     // Notification action
+        //   },
+        // ),
         MenuAnchor(
             childFocusNode: _buttonFocusNode,
             style: MenuStyle(
@@ -71,7 +86,9 @@ class _CustomAppbarState extends State<CustomAppbar> {
                   children: [
                     MenuItemButton(
                       leadingIcon: Icon(Icons.manage_accounts),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go(AppRoutes.profile);
+                      },
                       child: const Text('View Account'),
                     ),
                     MenuItemButton(
