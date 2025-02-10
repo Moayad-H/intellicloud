@@ -12,7 +12,9 @@ class UtilizationColumnChart extends StatelessWidget {
     required this.avgProvisioned,
     required this.avgUsed,
     required this.utilizationFor,
+    required this.usage,
   });
+  final String usage;
   final String utilizationFor;
   final String avgRequested;
   final String avgProvisioned;
@@ -120,7 +122,11 @@ class UtilizationColumnChart extends StatelessWidget {
                                     onPointTap: (ChartPointDetails
                                         pointInteractionDetails) {},
                                     color: AppColors.mintGreen.withAlpha(220),
-                                    dataSource: histogramData,
+                                    dataSource: usage == 'cpu'
+                                        ? histogramData
+                                        : usage == 'memory'
+                                            ? histogramData2
+                                            : histogramData3,
                                     xValueMapper: (ChartData1 data, _) =>
                                         data.x,
                                     yValueMapper: (ChartData1 data, _) =>
@@ -129,7 +135,11 @@ class UtilizationColumnChart extends StatelessWidget {
                                     onPointTap: (ChartPointDetails
                                         pointInteractionDetails) {},
                                     color: primaryColor.withAlpha(220),
-                                    dataSource: histogramData,
+                                    dataSource: usage == 'cpu'
+                                        ? histogramData
+                                        : usage == 'memory'
+                                            ? histogramData2
+                                            : histogramData3,
                                     xValueMapper: (ChartData1 data, _) =>
                                         data.x,
                                     yValueMapper: (ChartData1 data, _) =>
@@ -140,7 +150,11 @@ class UtilizationColumnChart extends StatelessWidget {
                                     borderColor:
                                         AppColors.lightGray.withAlpha(50),
                                     color: Colors.transparent,
-                                    dataSource: histogramData,
+                                    dataSource: usage == 'cpu'
+                                        ? histogramData
+                                        : usage == 'memory'
+                                            ? histogramData2
+                                            : histogramData3,
                                     xValueMapper: (ChartData1 data, _) =>
                                         data.x,
                                     yValueMapper: (ChartData1 data, _) =>
@@ -169,6 +183,33 @@ class ChartData1 {
 }
 
 final List<ChartData1> histogramData = <ChartData1>[
+  ChartData1('3:00 AM', 12),
+  ChartData1('4:00 AM', 15),
+  ChartData1('5:00 AM', 13),
+  ChartData1('6:00 AM', 10),
+  ChartData1('7:00 AM', 15),
+  ChartData1('8:00 AM', 12),
+  ChartData1('9:00 AM', 14),
+  ChartData1('10:00 AM', 7),
+  ChartData1('11:00 AM', 8),
+  ChartData1('12:00 PM', 7),
+  ChartData1('1:00 PM', 9),
+  ChartData1('2:00 PM', 7),
+  ChartData1('3:00 PM', 6),
+  ChartData1('4:00 PM', 7),
+  ChartData1('5:00 PM', 7),
+  ChartData1('6:00 PM', 6),
+  ChartData1('7:00 PM', 6),
+  ChartData1('8:00 PM', 7),
+  ChartData1('9:00 PM', 5),
+  ChartData1('10:00 PM', 5),
+  ChartData1('11:00 PM', 8),
+  ChartData1('12:00 AM', 6),
+  ChartData1('1:00 AM', 7),
+  ChartData1('2:00 AM', 6),
+];
+
+final List<ChartData1> histogramData2 = <ChartData1>[
   ChartData1('3:00 AM', 4),
   ChartData1('4:00 AM', 11),
   ChartData1('5:00 AM', 8),
@@ -194,3 +235,5 @@ final List<ChartData1> histogramData = <ChartData1>[
   ChartData1('1:00 AM', 11),
   ChartData1('2:00 AM', 12),
 ];
+
+final List<ChartData1> histogramData3 = <ChartData1>[];

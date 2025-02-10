@@ -61,13 +61,13 @@ class _Sidebar2State extends State<Sidebar2> {
             },
             icon: const Icon(Icons.speed),
           ),
-          SideMenuItem(
-            title: 'Cost Monitoring',
-            onTap: (index, _) {
-              // dashboardCubit.updateActiveTab(index, 'Cost Monitoring', context);
-            },
-            icon: const Icon(Icons.bar_chart),
-          ),
+          // SideMenuItem(
+          //   title: 'Cost Monitoring',
+          //   onTap: (index, _) {
+          //     // dashboardCubit.updateActiveTab(index, 'Cost Monitoring', context);
+          //   },
+          //   icon: const Icon(Icons.bar_chart),
+          // ),
           SideMenuItem(
             title: 'Available Savings',
             onTap: (index, _) {
@@ -104,14 +104,14 @@ class _Sidebar2State extends State<Sidebar2> {
       //   icon: Icon(Icons.monetization_on_sharp),
       // ),
 
-      SideMenuItem(
-        title: 'Settings',
-        onTap: (index, _) {
-          dashboardCubit.updateActiveTab(
-              index, AppRoutes.energyConsumption, context);
-        },
-        icon: Icon(Icons.settings),
-      ),
+      // SideMenuItem(
+      //   title: 'Settings',
+      //   onTap: (index, _) {
+      //     dashboardCubit.updateActiveTab(
+      //         index, AppRoutes.energyConsumption, context);
+      //   },
+      //   icon: Icon(Icons.settings),
+      // ),
     ];
     return SideMenu(
       displayModeToggleDuration: Duration(milliseconds: 350),

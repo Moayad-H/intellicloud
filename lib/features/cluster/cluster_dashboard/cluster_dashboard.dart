@@ -27,14 +27,14 @@ class ClusterDashboardState extends State<ClusterDashboard> {
   }
 
   List<ChartData> cPUchartData = [
-    ChartData('used', 45, AppColors.mintGreen),
-    ChartData('requested', 20, primaryColor),
-    ChartData('Remaining', 35, Colors.transparent)
+    ChartData('used', 20, AppColors.mintGreen),
+    ChartData('requested', 8, primaryColor),
+    ChartData('Remaining', 8, Colors.transparent)
   ];
   List<ChartData> memchartData = [
-    ChartData('used', 25, AppColors.mintGreen),
-    ChartData('requested', 10, primaryColor),
-    ChartData('Remaining', 65, Colors.transparent)
+    ChartData('used', 168.2, AppColors.mintGreen),
+    ChartData('requested', 41, primaryColor),
+    ChartData('Remaining', 41, Colors.transparent)
   ];
   List<ChartData> storChartData = [
     ChartData('used', 0, AppColors.mintGreen),
@@ -82,21 +82,21 @@ class ClusterDashboardState extends State<ClusterDashboard> {
                 children: [
                   ClusterUtilizationDougnut(
                       chartData: cPUchartData,
-                      requested: state.cluster.totalVcpu.toString(),
-                      used: '---',
+                      requested: '28',
+                      used: '20',
                       utilizationFor: 'CPU\n',
                       isCPU: true,
-                      provisioned: '65'),
+                      provisioned: state.cluster.totalVcpu.toString()),
                   SizedBox(
                     width: 20,
                   ),
                   ClusterUtilizationDougnut(
                       chartData: memchartData,
-                      requested: state.cluster.totalMemory.toString(),
-                      used: '---',
+                      requested: '180.1',
+                      used: '168.2',
                       utilizationFor: 'Memory\n',
                       isCPU: false,
-                      provisioned: '5.8k'),
+                      provisioned: state.cluster.totalMemory.toString()),
                   SizedBox(
                     width: 20,
                   ),
@@ -113,25 +113,28 @@ class ClusterDashboardState extends State<ClusterDashboard> {
               //TODO Utilization
 
               UtilizationColumnChart(
-                  avgRequested: '2343',
-                  avgProvisioned: '2345',
-                  avgUsed: '223',
+                  usage: 'cpu',
+                  avgRequested: '27.2',
+                  avgProvisioned: '35.2',
+                  avgUsed: '18.7',
                   utilizationFor: 'CPU'),
               SizedBox(
                 height: 20,
               ),
               UtilizationColumnChart(
-                  avgRequested: '1223',
-                  avgProvisioned: '2345',
-                  avgUsed: '223',
+                  usage: 'memory',
+                  avgRequested: '181.1',
+                  avgProvisioned: '209.3',
+                  avgUsed: '166.4',
                   utilizationFor: 'Memory'),
               SizedBox(
                 height: 20,
               ),
               UtilizationColumnChart(
-                  avgRequested: '1223',
-                  avgProvisioned: '2345',
-                  avgUsed: '223',
+                  usage: '',
+                  avgRequested: '---',
+                  avgProvisioned: '---',
+                  avgUsed: '---',
                   utilizationFor: 'Storage'),
               SizedBox(
                 height: 10,
